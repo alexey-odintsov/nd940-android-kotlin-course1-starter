@@ -10,19 +10,55 @@ import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.LoginFragmentBinding
 
-class LoginFragment: Fragment() {
+class LoginFragment : Fragment() {
+
+    lateinit var binding: LoginFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val binding: LoginFragmentBinding = DataBindingUtil.inflate(
-            inflater, R.layout.login_fragment, container, false)
+    ): View {
+        binding = DataBindingUtil.inflate(
+            inflater, R.layout.login_fragment, container, false
+        )
 
         binding.loginButton.setOnClickListener {
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+            login()
+        }
+        binding.registerButton.setOnClickListener {
+            register()
         }
         return binding.root
+    }
+
+    private fun validateLogin(): Boolean {
+        val login = binding.loginEdittext.text
+        return login.length > 5
+    }
+
+    private fun validatePassword(): Boolean {
+        val password = binding.passwordEdittext.text
+        return password.length > 5
+    }
+
+    private fun login() {
+        if (!validateLogin()) {
+            binding.loginEdittext.error = "Wrong login!"
+        } else if (!validatePassword()) {
+            binding.passwordEdittext.error = "Wrong password!"
+        } else {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+        }
+    }
+
+    private fun register() {
+        if (!validateLogin()) {
+            binding.loginEdittext.error = "Wrong login!"
+        } else if (!validatePassword()) {
+            binding.passwordEdittext.error = "Wrong password!"
+        } else {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+        }
     }
 }
