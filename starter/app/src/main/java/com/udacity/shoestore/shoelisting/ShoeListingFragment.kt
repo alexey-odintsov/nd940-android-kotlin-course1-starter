@@ -15,7 +15,7 @@ class ShoeListingFragment  : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding: ShoeListingFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.shoe_listing_fragment, container, false
         )
