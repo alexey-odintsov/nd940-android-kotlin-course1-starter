@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.ShoeListingFragmentBinding
 
@@ -26,6 +27,10 @@ class ShoeListingFragment  : Fragment() {
 
         adapter = ShoeAdapter(emptyList())
         binding.shoeList.adapter = adapter
+
+        binding.fab.setOnClickListener {
+            findNavController().navigate(ShoeListingFragmentDirections.actionShoeListingFragmentToShoeDetailFragment())
+        }
 
         viewModel.listLiveData.observe(viewLifecycleOwner, { list ->
             adapter.setData(list)
