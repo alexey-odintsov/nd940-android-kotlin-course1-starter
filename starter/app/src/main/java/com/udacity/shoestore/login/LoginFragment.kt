@@ -44,7 +44,7 @@ class LoginFragment : Fragment() {
         authViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
         authViewModel.loginLiveData.observe(viewLifecycleOwner, { authorized ->
             if (authorized) {
-                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToShoeListingFragment())
+                //findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToShoeListingFragment())
             }
         })
         return binding.root

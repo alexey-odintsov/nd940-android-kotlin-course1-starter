@@ -38,8 +38,14 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         val valid = login.length > 5 && password.length > 5
         if (valid) {
             saveAuth(valid)
+            _loginLiveData.value = true
         }
         return valid
+    }
+
+    fun logout() {
+        saveAuth(false)
+        _loginLiveData.value = false
     }
 
     companion object {
