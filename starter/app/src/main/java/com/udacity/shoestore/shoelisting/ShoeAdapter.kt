@@ -8,7 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.udacity.shoestore.R
 import com.udacity.shoestore.models.Shoe
 
-class ShoeAdapter(private val data: List<Shoe>) : RecyclerView.Adapter<ShoeAdapter.ViewHolder>() {
+class ShoeAdapter(private var data: List<Shoe>) : RecyclerView.Adapter<ShoeAdapter.ViewHolder>() {
+
+    fun setData(data: List<Shoe>) {
+        this.data = data;
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.shoe_item, parent, false)

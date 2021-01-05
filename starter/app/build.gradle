@@ -42,6 +42,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation 'androidx.fragment:fragment-ktx:1.3.0-rc01'
 
     // Tests
     testImplementation 'junit:junit:4.13.1'
