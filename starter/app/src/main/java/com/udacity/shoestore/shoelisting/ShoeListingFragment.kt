@@ -26,7 +26,7 @@ class ShoeListingFragment  : Fragment() {
         )
 
         adapter = ShoeAdapter(emptyList())
-        binding.shoeList.adapter = adapter
+        //binding.shoeList.adapter = adapter
 
         binding.fab.setOnClickListener {
             findNavController().navigate(ShoeListingFragmentDirections.actionShoeListingFragmentToShoeDetailFragment())
