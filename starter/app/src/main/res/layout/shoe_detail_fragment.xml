@@ -29,7 +29,8 @@
                 android:id="@+id/name_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Shoe name" />
+                android:hint="Shoe name"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -45,7 +46,8 @@
                 android:id="@+id/company_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Company" />
+                android:hint="Company"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -61,7 +63,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Size"
-                android:inputType="number" />
+                android:inputType="number"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -79,7 +82,7 @@
                 android:gravity="top|left"
                 android:hint="Description"
                 android:imeOptions="actionDone"
-                android:lines="5"
+                android:inputType="text"
                 android:singleLine="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
