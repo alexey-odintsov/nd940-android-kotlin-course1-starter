@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ShoeStore</string>
+    <string name="error_empty_text">The text is empty!</string>
+    <string name="error_not_a_number">Wrong number!</string>
 </resources>

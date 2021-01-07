@@ -11,7 +11,7 @@ class App: Application() {
     }
 
     companion object {
-        val SHOE_LIST = listOf<Shoe>(
+        val SHOE_LIST = mutableListOf<Shoe>(
                 Shoe("Boots", 44.0, "Ecco", "Good boots", listOf()),
                 Shoe("Sandals", 36.0, "Ralf", "Casual sandals", listOf()),
                 Shoe("Crossers", 33.0, "Nike", "Autumn 2020", listOf()),
