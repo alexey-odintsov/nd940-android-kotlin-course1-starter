@@ -2,6 +2,7 @@ package com.udacity.shoestore.shoelisting
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -32,6 +33,8 @@ class ShoeListingFragment : Fragment() {
             bindShoes(binding.list, list)
         })
 
+
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -49,5 +52,10 @@ class ShoeListingFragment : Fragment() {
             shoeBinding.sizeText.text = getString(R.string.size_format, shoe.size)
             list.addView(shoeBinding.root)
         }
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        menu.findItem(R.id.menu_logout).isVisible = true
     }
 }
