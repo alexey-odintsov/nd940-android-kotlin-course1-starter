@@ -45,7 +45,7 @@ class ShoeListingFragment : Fragment() {
             shoeBinding.name.text = shoe.name
             shoeBinding.companyText.text = shoe.company
             shoeBinding.descriptionText.text = shoe.description
-            shoeBinding.sizeText.text = String.format("%.2f", shoe.size)
+            shoeBinding.sizeText.text = getString(R.string.size_format, shoe.size)
             list.addView(shoeBinding.root)
         }
     }

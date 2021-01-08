@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import com.udacity.shoestore.models.Shoe
 
 class ShoeListViewModel : ViewModel() {
-    fun addShoe(name: String, company: String, size: Double, description: String) {
-        SHOE_LIST.add(Shoe(name, size, company, description, listOf()))
+    fun addShoe(shoe: Shoe) {
+        SHOE_LIST.add(shoe)
         _listLiveData.value = SHOE_LIST
     }
 

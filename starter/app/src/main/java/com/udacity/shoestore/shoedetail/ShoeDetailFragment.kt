@@ -8,14 +8,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.textfield.TextInputEditText
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.ShoeDetailFragmentBinding
+import com.udacity.shoestore.models.Shoe
 import com.udacity.shoestore.shoelisting.ShoeListViewModel
-import java.lang.Exception
 
 class ShoeDetailFragment : Fragment() {
 
+    private lateinit var binding: ShoeDetailFragmentBinding
     private val viewModel: ShoeListViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -23,21 +23,20 @@ class ShoeDetailFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        val binding: ShoeDetailFragmentBinding = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
                 inflater, R.layout.shoe_detail_fragment, container, false
         )
+
+        binding.shoe = Shoe("", DEFAULT_SIZE, "", "")
 
         binding.cancelButton.setOnClickListener {
             findNavController().popBackStack()
         }
 
         binding.saveButton.setOnClickListener {
-            val name = validateText(binding.nameEdit)
-            val company = validateText(binding.companyEdit)
-            val size = validateNumber(binding.sizeEdit)
-            val description = validateText(binding.descriptionEdit)
-            if (name.isNotBlank() && company.isNotBlank() && !size.isNaN() && description.isNotBlank()) {
-                viewModel.addShoe(name, company, size, description)
+            val shoe = binding.shoe!!
+            if (validateShoe(shoe)) {
+                viewModel.addShoe(shoe)
                 findNavController().popBackStack()
             }
         }
@@ -45,20 +44,30 @@ class ShoeDetailFragment : Fragment() {
         return binding.root
     }
 
-    private fun validateNumber(edit: TextInputEditText): Double {
-        return try {
-            edit.text.toString().toDouble()
-        } catch (e: Exception) {
-            edit.error = getString(R.string.error_not_a_number)
-            Double.NaN
+    private fun validateShoe(shoe: Shoe): Boolean {
+        if (shoe.name.isBlank()) {
+            binding.nameEdit.error = getString(R.string.error_empty_text)
         }
+
+        if (shoe.size.isNaN()) {
+            binding.sizeEdit.error = getString(R.string.error_not_a_number)
+        }
+
+        if (shoe.company.isBlank()) {
+            binding.companyEdit.error = getString(R.string.error_empty_text)
+        }
+
+        if (shoe.description.isBlank()) {
+            binding.descriptionEdit.error = getString(R.string.error_empty_text)
+        }
+
+        return shoe.name.isNotBlank()
+                && shoe.company.isNotBlank()
+                && !shoe.size.isNaN()
+                && shoe.description.isNotBlank()
     }
 
-    private fun validateText(edit: TextInputEditText): String {
-        val value = edit.text.toString()
-        if (value.isBlank()) {
-            edit.error = getString(R.string.error_empty_text)
-        }
-        return value
+    companion object {
+        const val DEFAULT_SIZE = 20.0
     }
 }

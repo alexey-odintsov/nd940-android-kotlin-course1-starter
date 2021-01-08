@@ -2,6 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <import type="com.udacity.shoestore.SizeConverter" />
+
+        <variable
+            name="shoe"
+            type="com.udacity.shoestore.models.Shoe" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,7 +29,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/shoe_name"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:text="@={shoe.name}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -37,7 +47,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/company"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:text="@={shoe.company}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -53,8 +64,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/size"
-                android:inputType="number"
-                android:singleLine="true" />
+                android:inputType="numberDecimal"
+                android:singleLine="true"
+                android:text="@={SizeConverter.convertDoubleToString(shoe.size)}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -73,7 +85,8 @@
                 android:hint="@string/description"
                 android:imeOptions="actionDone"
                 android:inputType="text"
-                android:singleLine="false" />
+                android:singleLine="false"
+                android:text="@={shoe.description}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
