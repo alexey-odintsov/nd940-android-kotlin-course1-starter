@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupToolBar() {
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.loginFragment, R.id.shoeListingFragment))
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.loginFragment, R.id.welcomeFragment, R.id.instructionsFragment, R.id.shoeListingFragment))
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
     }
