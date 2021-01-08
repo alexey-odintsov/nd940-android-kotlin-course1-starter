@@ -2,6 +2,7 @@ package com.udacity.shoestore.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -41,6 +42,8 @@ class LoginFragment : Fragment() {
             }
         }
 
+        setHasOptionsMenu(true)
+
         return binding.root
     }
 
@@ -48,4 +51,8 @@ class LoginFragment : Fragment() {
         binding.loginEdittext.error = "Login and password length should be at least 5 characters!"
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        menu.findItem(R.id.menu_logout).isVisible = false
+    }
 }
