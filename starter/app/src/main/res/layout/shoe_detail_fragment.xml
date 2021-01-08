@@ -15,6 +15,9 @@
             type="com.udacity.shoestore.models.Shoe" />
     </data>
 
+    <!-- The layout structure is not very complex thanks to TextInputLayouts, but I used
+    ConstraintLayout to apply horizontal spread chain to bottom buttons.
+    Though two LinearLayouts could be an option here but one would be nested to another -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

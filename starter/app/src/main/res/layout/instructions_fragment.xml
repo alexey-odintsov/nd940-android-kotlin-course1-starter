@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -9,22 +8,19 @@
             type="com.udacity.shoestore.instructions.InstructionsFragment" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- The structure of this screen is simple and linear so a LinearLayout is good choice -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/instructions_title"
-            app:layout_constraintBottom_toTopOf="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            android:text="@string/instructions_title" />
 
         <TextView
             android:id="@+id/textView4"
@@ -32,12 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:paddingHorizontal="12dp"
-            android:text="@string/instructions_description"
-            app:layout_constraintBottom_toTopOf="@+id/gotItButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            android:text="@string/instructions_description" />
 
         <Button
             android:id="@+id/gotItButton"
@@ -45,11 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:onClick="@{() -> controller.navigateToListing()}"
-            android:text="@string/go_to_shoes_list"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:text="@string/go_to_shoes_list" />
+    </LinearLayout>
 </layout>

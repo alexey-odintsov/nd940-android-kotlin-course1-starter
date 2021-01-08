@@ -9,6 +9,8 @@
             type="com.udacity.shoestore.shoelisting.ShoeListingFragment" />
     </data>
 
+    <!-- Here I use ConstraintLayout because FAB is laid out at the bottom right corner on top of
+    scrollView. LinearLayout can't be used here -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

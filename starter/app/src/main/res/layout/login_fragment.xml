@@ -9,6 +9,8 @@
             type="com.udacity.shoestore.login.LoginFragment" />
     </data>
 
+    <!-- I've  used ConstraintLayout here because Register and Login buttons are packet horizontally.
+    It could be two linear layouts but the one would be nested inside another that's not good -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
