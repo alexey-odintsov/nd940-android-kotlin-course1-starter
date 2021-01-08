@@ -27,7 +27,7 @@ class AuthManager(private val application: Application) {
         const val PREFS_NAME = "prefs"
         const val PREFS_AUTHORISED = "authorized"
 
-        var instance: AuthManager? = null
+        private var instance: AuthManager? = null
 
         fun getInstance(application: Application): AuthManager {
             if (instance == null) {

@@ -2,4 +2,21 @@
     <string name="app_name">ShoeStore</string>
     <string name="error_empty_text">The text is empty!</string>
     <string name="error_not_a_number">Wrong number!</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="description">Description</string>
+    <string name="size">Size</string>
+    <string name="company">Company</string>
+    <string name="shoe_name">Shoe name</string>
+    <string name="instructions_description">In shoes list screen you will see list of all shoes. There will be presented all the information about shoes such as Model, Producer, Size and price.\n\nIf you would like to add new shoe to the listing, just tap on FAB button at the bottom right corner.</string>
+    <string name="go_to_shoes_list">Go to shoes list</string>
+    <string name="welcome_description">Welcome to ShoeStore application!\n\nHere you can list different shoes and add new ones.</string>
+    <string name="read_instructions">Read instructions</string>
+    <string name="instructions_title">Instructions</string>
+    <string name="login_email">Login/Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="logout">Logout</string>
+    <string name="welcome_title">Welcome</string>
 </resources>
