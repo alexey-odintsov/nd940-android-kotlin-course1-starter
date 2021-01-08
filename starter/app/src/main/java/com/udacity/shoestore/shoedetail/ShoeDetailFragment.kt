@@ -26,22 +26,22 @@ class ShoeDetailFragment : Fragment() {
         binding = DataBindingUtil.inflate(
                 inflater, R.layout.shoe_detail_fragment, container, false
         )
-
+        binding.controller = this
         binding.shoe = Shoe("", DEFAULT_SIZE, "", "")
 
-        binding.cancelButton.setOnClickListener {
+        return binding.root
+    }
+
+    fun submit() {
+        val shoe = binding.shoe!!
+        if (validateShoe(shoe)) {
+            viewModel.addShoe(shoe)
             findNavController().popBackStack()
         }
+    }
 
-        binding.saveButton.setOnClickListener {
-            val shoe = binding.shoe!!
-            if (validateShoe(shoe)) {
-                viewModel.addShoe(shoe)
-                findNavController().popBackStack()
-            }
-        }
-
-        return binding.root
+    fun cancel() {
+        findNavController().popBackStack()
     }
 
     private fun validateShoe(shoe: Shoe): Boolean {

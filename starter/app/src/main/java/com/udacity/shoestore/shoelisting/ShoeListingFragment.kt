@@ -26,16 +26,17 @@ class ShoeListingFragment : Fragment() {
         val binding: ShoeListingFragmentBinding = DataBindingUtil.inflate(
                 inflater, R.layout.shoe_listing_fragment, container, false
         )
-
-        binding.fab.setOnClickListener {
-            findNavController().navigate(ShoeListingFragmentDirections.actionShoeListingFragmentToShoeDetailFragment())
-        }
+        binding.controller = this
 
         viewModel.listLiveData.observe(viewLifecycleOwner, { list ->
             bindShoes(binding.list, list)
         })
 
         return binding.root
+    }
+
+    fun navigateToDetails() {
+        findNavController().navigate(ShoeListingFragmentDirections.actionShoeListingFragmentToShoeDetailFragment())
     }
 
     private fun bindShoes(list: LinearLayout, items: List<Shoe>?) {

@@ -13,17 +13,19 @@ import com.udacity.shoestore.databinding.InstructionsFragmentBinding
 class InstructionsFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         val binding: InstructionsFragmentBinding = DataBindingUtil.inflate(
-            inflater, R.layout.instructions_fragment, container, false
+                inflater, R.layout.instructions_fragment, container, false
         )
 
-        binding.gotItButton.setOnClickListener {
-            findNavController().navigate(InstructionsFragmentDirections.actionInstructionsFragmentToShoeListingFragment())
-        }
+        binding.controller = this
         return binding.root
+    }
+
+    fun navigateToListing() {
+        findNavController().navigate(InstructionsFragmentDirections.actionInstructionsFragmentToShoeListingFragment())
     }
 }

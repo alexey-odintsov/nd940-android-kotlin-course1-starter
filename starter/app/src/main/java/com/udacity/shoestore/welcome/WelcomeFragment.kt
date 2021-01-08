@@ -21,9 +21,11 @@ class WelcomeFragment : Fragment() {
             inflater, R.layout.welcome_fragment, container, false
         )
 
-        binding.nextButton.setOnClickListener {
-            findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToInstructionsFragment())
-        }
+        binding.controller = this
         return binding.root
+    }
+
+    fun navigateToInstructions() {
+        findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToInstructionsFragment())
     }
 }

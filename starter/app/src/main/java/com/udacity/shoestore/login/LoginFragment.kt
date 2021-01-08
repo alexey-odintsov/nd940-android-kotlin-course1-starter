@@ -25,26 +25,24 @@ class LoginFragment : Fragment() {
         binding = DataBindingUtil.inflate(
                 inflater, R.layout.login_fragment, container, false
         )
+        binding.controller = this
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-
-        binding.loginButton.setOnClickListener {
-            if (loginViewModel.login(binding.loginEdittext.text.toString(), binding.passwordEdittext.text.toString())) {
-                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
-            } else {
-                showLoginError()
-            }
-        }
-        binding.registerButton.setOnClickListener {
-            if (loginViewModel.login(binding.loginEdittext.text.toString(), binding.passwordEdittext.text.toString())) {
-                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
-            } else {
-                showLoginError()
-            }
-        }
 
         setHasOptionsMenu(true)
 
         return binding.root
+    }
+
+    fun login() {
+        if (loginViewModel.login(binding.loginEdittext.text.toString(), binding.passwordEdittext.text.toString())) {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+        } else {
+            showLoginError()
+        }
+    }
+
+    fun register() {
+        login()
     }
 
     private fun showLoginError() {

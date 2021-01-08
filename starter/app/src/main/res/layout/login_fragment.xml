@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="controller"
+            type="com.udacity.shoestore.login.LoginFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,6 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:onClick="@{() -> controller.login()}"
             android:text="@string/login"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,6 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:onClick="@{() -> controller.register()}"
             android:text="@string/register"
             app:layout_constraintEnd_toStartOf="@+id/login_button"
             app:layout_constraintHorizontal_bias="0.5"
