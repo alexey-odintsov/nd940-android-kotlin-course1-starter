@@ -1,11 +1,11 @@
 package com.udacity.shoestore
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -15,9 +15,8 @@ import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
-    private var authorized: Boolean = false
+    private lateinit var authManager: AuthManager
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: AuthViewModel
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     private var logoutMenu: MenuItem? = null
@@ -26,18 +25,21 @@ class MainActivity : AppCompatActivity() {
         Timber.d("onCreate")
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        setupNavigation()
+        authManager = AuthManager.getInstance(application)
+        Timber.d("isLogged ${authManager.isAuthorized()}")
 
-        viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
-        viewModel.loginLiveData.observe(this, { authorized ->
-            Timber.d("auth changed to $authorized")
-            this.authorized = authorized
-            invalidateOptionsMenu()
-        })
+        setupNavigation()
+        setupToolBar()
     }
 
     private fun setupNavigation() {
         navController = findNavController(R.id.nav_host_fragment)
+        val graph = navController.graph
+        graph.startDestination = if (authManager.isAuthorized()) R.id.shoeListingFragment else R.id.loginFragment
+        navController.graph = graph
+    }
+
+    private fun setupToolBar() {
         appBarConfiguration = AppBarConfiguration(setOf(R.id.loginFragment, R.id.shoeListingFragment))
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
@@ -47,16 +49,17 @@ class MainActivity : AppCompatActivity() {
         Timber.d("onCreateOptionsMenu")
         menuInflater.inflate(R.menu.menu, menu)
         logoutMenu = menu.findItem(R.id.menu_logout)
-        logoutMenu?.isVisible = authorized
+        logoutMenu?.isVisible = authManager.isAuthorized()
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_logout -> {
-                viewModel.logout()
-                navController.popBackStack(R.id.loginFragment, true)
-                navController.navigate(R.id.loginFragment)
+                authManager.logout()
+                val intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
                 return true
             }
             else -> super.onOptionsItemSelected(item)

@@ -8,13 +8,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.udacity.shoestore.AuthViewModel
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.LoginFragmentBinding
 
 class LoginFragment : Fragment() {
 
-    private lateinit var authViewModel: AuthViewModel
+    private lateinit var loginViewModel: LoginViewModel
     lateinit var binding: LoginFragmentBinding
 
     override fun onCreateView(
@@ -25,28 +24,23 @@ class LoginFragment : Fragment() {
         binding = DataBindingUtil.inflate(
                 inflater, R.layout.login_fragment, container, false
         )
+        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         binding.loginButton.setOnClickListener {
-            if (authViewModel.login(binding.loginEdittext.text.toString(), binding.passwordEdittext.text.toString())) {
+            if (loginViewModel.login(binding.loginEdittext.text.toString(), binding.passwordEdittext.text.toString())) {
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
             } else {
                 showLoginError()
             }
         }
         binding.registerButton.setOnClickListener {
-            if (authViewModel.login(binding.loginEdittext.text.toString(), binding.passwordEdittext.text.toString())) {
+            if (loginViewModel.login(binding.loginEdittext.text.toString(), binding.passwordEdittext.text.toString())) {
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
             } else {
                 showLoginError()
             }
         }
 
-        authViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
-        authViewModel.loginLiveData.observe(viewLifecycleOwner, { authorized ->
-            if (authorized) {
-                //findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToShoeListingFragment())
-            }
-        })
         return binding.root
     }
 
